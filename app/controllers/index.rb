@@ -14,20 +14,18 @@ get '/newuser' do
   erb :newuser
 end
 
-
 ### post requests ###
 
 post '/login' do
   user_info = params[:form]
   # the following works - returns user object if valid else nil
-
   if User.authenticate(user_info[:email],user_info[:password]) 
-  @user = User.authenticate(user_info[:email],user_info[:password])
-  session[:user_id] = @user.id
-  erb :somewhere else
-else
-  erb :index
-end
+  	@user = User.authenticate(user_info[:email],user_info[:password])
+  	session[:user_id] = @user.id
+    erb :login 
+  else
+  redirect '/'
+  end
 end
 
 post '/new_user_process' do
