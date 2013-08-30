@@ -1,13 +1,14 @@
 class User < ActiveRecord::Base
   # e.g., User.authenticate('jesse@devbootcamp.com', 'apples123')
+  validates :email, presence: true
+  validates :email, uniqueness: true
+  validates :password, presence: true
+
+
   def self.authenticate(email, password)
+    #return nil if user = 
+    return nil if (User.where(email: email).last) == nil
   	user = User.where(email: email).last
-  	p user.password
-  	p password
   	user.password == password ? user : nil
-    #return user if user.password == password 
-    
-    # if email and password correspond to a valid user, return that user
-    # otherwise, return nil
   end
 end
